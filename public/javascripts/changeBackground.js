@@ -23,7 +23,6 @@ function changeBackground(peopleData) {
     }
     console.log(values);
     d3.selectAll(".pathChina").attr("fill", function (d, i) {  ///attr属性和style属性
-        console.log(values[d.properties.name]);
         if (!values[d.properties.name]) {    //定义数字为0的为未知数据
 
             return "#ffffff";
@@ -40,6 +39,11 @@ function changeBackground(peopleData) {
         })
         .on("mouseout", function (d, i) {
             d3.select(this).style("fill", backColor);
+        })
+        .on("click", function (d, i) {
+            var id = d.properties.id;
+            clickChina(d, i, "../json/geometryProvince/" + id + ".json")
+            createTip(d.properties.name,peopleData)
         })
 }
 function getMaxValue(d) {
