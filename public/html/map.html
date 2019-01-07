@@ -1,54 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Map</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Map</title>
 </head>
 
-
 <body>
-   <script src="http://d3js.org/d3.v3.min.js"></script>
-   <script src="../javascripts/china_map.js"></script>
-   <script src="../javascripts/privence_map.js"></script>
-   <div id="map"></div>
-   <script>
-    var totalmaxvalue=10000;
-	var totalminvalue=10;
-	var namelabeldy=50;
-	var namelabeldx=30;
-	var provinceDataYear;
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="../javascripts/china_map.js"></script>
+	<script src="../javascripts/privence_map.js"></script>
+	<div class="tip"></div>
+	<div id="map"></div>
+	<script>
+		var totalmaxvalue = 10000;
+		var totalminvalue = 10;
+		var namelabeldy = 50;
+		var namelabeldx = 30;
+		var provinceDataYear;
 
-	var globalyear = 2004;
-	
-
-	var timeheight = 80;
-	var width  = 1330;
-	var height = 520;
-	var background = "#D1EEEE";
-	var overColor = "#F08080";
-
-	var svg = d3.select("#map").append("svg")
-	    .attr("width", width)
-	    .attr("height", height + timeheight)
-	    .append("g")
-	    .attr("transform", "translate(0,0)");
-
-	var chinaJsonPath = "../json/china.json";
-	drawMap(chinaJsonPath, svg);
-	
+		var globalyear = 2004;
 
 
-	var nodes = [];
-	var provinceNodes = [];
-	var coutiesNodes = [];
-	var provinceId = "";
-	var coutiesId = "";
-	var textColor= "black";
+		var timeheight = 80;
+		var width = 1330;
+		var height = 520;
+		var background = "#D1EEEE";
+		var overColor = "#F08080";
 
-    </Script>
+		var svg = d3.select("#map").append("svg")
+			.attr("width", width)
+			.attr("height", height + timeheight)
+			.append("g")
+			.attr("transform", "translate(0,0)");
+
+		var chinaJsonPath = "../json/china.json";
+		drawMap(chinaJsonPath, svg);
+		var nodes = [];
+		var provinceNodes = [];
+		var coutiesNodes = [];
+		var provinceId = "";
+		var coutiesId = "";
+		var textColor = "black";
+	</Script>
 </body>
+<script src="../javascripts/changeBackground.js"></script>
 <style>
 	#map {
 		height: auto;
@@ -58,6 +56,12 @@
 		-moz-border-radius: 10px;
 		border-radius: 10px;
 	}
+	.tip {
+		position:absolute;
+		width: 100px;
+		height: 100px;
+        background:blue;
+	}
+</style>
 
- </style>
-</html> 
+</html>
