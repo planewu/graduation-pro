@@ -43,7 +43,8 @@ function changeBackground(peopleData) {
         .on("click", function (d, i) {
             var id = d.properties.id;
             clickChina(d, i, "../json/geometryProvince/" + id + ".json")
-            createTip(d.properties.name,peopleData)
+            createTip(d.properties.name,peopleData);
+            createPie(d.properties.name,peopleData);
         })
 }
 function getMaxValue(d) {
