@@ -1,3 +1,9 @@
+/* create by wujuhui 2019-1-6 */
+/* lastchange by wujuhui 2019-1-9 */
+/* The js file have function as follows
+
+*/
+
 // 中国地图的画图函数
 // 注意center()接受的经纬度
 function drawMap(mapPath, svg, c) {
@@ -30,10 +36,15 @@ function drawMap(mapPath, svg, c) {
             .on("mouseout", function (d, i) {
                 d3.select(this).attr("fill", backColor)
             })
-            .on("click", function (d, i) {
-                var id = d.properties.id;
-                clickChina(d, i, "../json/geometryProvince/" + id + ".json")
-            })
+        // .on("click", function (d, i) {
+        //     console.log(d);
+        //     var id = d.properties.id;
+        //     clickChina(d, i, "../json/geometryProvince/" + id + ".json");
+        //     tip.attr("display","block")
+        //        .attr("transform",function(){
+
+        //        })
+        // })
         root.features.forEach(function (d, i) {
             var centroid = path.centroid(d)
             centroid.x = centroid[0];
@@ -52,7 +63,6 @@ function drawPrivenceMap(mapPath, d, svg) {
         // console.log(peopleData);
         if (error)
             return console.error(error)
-        console.log(root.features);
         var projection = d3.geo.mercator() //投影函数
             .center(root.cp)
             .scale(root.size * 2.7)
@@ -88,7 +98,7 @@ function drawPrivenceMap(mapPath, d, svg) {
             centroid.y = centroid[1];
             centroid.id = d.properties.name
             centroid.feature = d
-            proveinceNodes.push(centroid); ////这里不明白
+            //  proveinceNodes.push(centroid); ////这里不明白
         })
     })
 }

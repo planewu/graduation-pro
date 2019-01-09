@@ -10,16 +10,18 @@
 
 <body>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
-	<script src="../javascripts/china_map.js"></script>
+	<script src="../javascripts/drawMap.js"></script>
 	<script src="../javascripts/privence_map.js"></script>
 	<script src="../javascripts/tip.js"></script>
 	<script src="../javascripts/pie.js"></script>
-	<div id="tip">
-		<p><strong>省份:</strong><span class="province-name">加拿带</span></p>
-		<p><strong>年份</strong><span class="year">2019-1-1</span></p>
-		<p><strong>人口总和</strong><span class="people-num">6001</span></p>
-		<p><strong>男性人口总和</strong><span class="men-num">3000</span></p>
-		<p><strong>女性人口总和</strong><span class="women-num">3001</span></p>
+	<div id="tip" class="hidden">
+		<div class = "text-area">
+		<p><strong>省份: </strong><span class="province-name">加拿带</span></p>
+		<p><strong>年份: </strong><span class="year">2019-1-1</span></p>
+		<p><strong>人口总和: </strong><span class="people-num">无数据</span></p>
+		<p><strong>男性人口总和: </strong><span class="men-num">无数据</span></p>
+		<p><strong>女性人口总和: </strong><span class="women-num">无数据</span></p>
+		</div>
 		<div class ="pie"></div>
 	</div>
 	<div id="map"></div>
@@ -67,9 +69,24 @@
 	}
 	#tip {
 		position:absolute;
-		width: 100px;
-		height: 100px;
-        background:blue;
+		width: 400px;
+		height: 208px;
+		padding: 10px;
+        background:#f1f1f1;
+		box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	}
+	.hidden {
+	display: none;
+	}
+	.text-area{
+		position:relative;
+		float:left;
+	}
+	.pie{
+		position: relative;
+		float: right;
+		margin-top:4px;
+		margin-right:4px;
 	}
 </style>
 
