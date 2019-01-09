@@ -17,12 +17,12 @@ function drawMap(mapPath, svg, c) {
         var backColor;
         if (error)
             return console.error(error)
+        console.log(root.features);
         svg.selectAll(".pathChina")
             .data(root.features)
             .enter()
             .append("path")
             .attr("class", "pathChina")
-
             .attr("stroke", "#000")
             .attr("stroke-width", 0.3)
             .attr("fill", function (d, i) {
@@ -36,15 +36,7 @@ function drawMap(mapPath, svg, c) {
             .on("mouseout", function (d, i) {
                 d3.select(this).attr("fill", backColor)
             })
-        // .on("click", function (d, i) {
-        //     console.log(d);
-        //     var id = d.properties.id;
-        //     clickChina(d, i, "../json/geometryProvince/" + id + ".json");
-        //     tip.attr("display","block")
-        //        .attr("transform",function(){
-
-        //        })
-        // })
+            createLabel(root);       ////创建标注
         root.features.forEach(function (d, i) {
             var centroid = path.centroid(d)
             centroid.x = centroid[0];
