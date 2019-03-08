@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height">
+    <title>人口比例</title>
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        html,
+        body {
+            overflow: hidden;
+            height: 100%;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mountNode"></div>
+    <script>/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;</script>
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.4.1/dist/g2.min.js"></script>
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.1/dist/data-set.min.js"></script>
+    <script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <style>
+        .g2-label-item {
+            font-size: 12px;
+            color: #ffffff;
+            text-shadow: 0px 0px 2px #595959;
+        }
+    </style>
+    <script>
+
+        d3.csv("../csv/nationality_sex_age.csv", function (error, dataset) {
+            if (error)
+                console.error(error)
+            console.log(dataset);  //人口数据
+            var otherRatio = (dataset[0].all - dataset[0].han_all) / dataset[0].all; // 少数民族 的占比
+
+            var han_men = dataset[0].han_men / dataset[0].all; //汉族 男占比  
+            var han_women = dataset[0].han_women / dataset[0].all;  //汉族女占比
+
+            var otherOffsetAngle = otherRatio * Math.PI; // 民族 占的角度的一半
+
+            //   var otherRatio = 6.67 / 100; // Other 的占比
+            //   var otherOffsetAngle = otherRatio * Math.PI; // other 占的角度的一半
+            var data = [{
+                type: '汉族男性',
+                value: han_men.toFixed(4)*100
+            }, {
+                type: '汉族女性',
+                value: han_women.toFixed(4)*100
+            },{
+                type:'少数民族',
+                value:otherRatio.toFixed(4)*100
+            }];
+            var other = [{
+                type: '论坛',
+                value: 1.77
+            }, {
+                type: '网站',
+                value: 1.44
+            }, {
+                type: '微信',
+                value: 1.12
+            }, {
+                type: '客户端',
+                value: 1.05
+            }, {
+                type: '新闻',
+                value: 0.81
+            }, {
+                type: '视频',
+                value: 0.39
+            }, {
+                type: '博客',
+                value: 0.37
+            }, {
+                type: '报刊',
+                value: 0.17
+            }];
+
+
+
+            var chart = new G2.Chart({
+                container: 'mountNode',
+                forceFit: true,
+                height: window.innerHeight,
+                padding: [0, 20, 0, 0]
+            });
+            chart.legend(false);
+            var view1 = chart.view({
+                start: {
+                    x: 0,
+                    y: 0
+                },
+                end: {
+                    x: 0.5,
+                    y: 1
+                }
+            });
+            view1.coord('theta', {
+                radius: 0.7,
+                startAngle: 0 + otherOffsetAngle,
+                endAngle: Math.PI * 2 + otherOffsetAngle
+            });
+            view1.source(data);
+            view1.intervalStack().position('value').color('type', ['#2593fc','rgb(234, 66, 66)','#38c060', ]).opacity(1).label('value', function () {
+                return {
+                    offset: -30,
+                    useHtml: true,
+                    htmlTemplate: function htmlTemplate(text, item) {
+                        var d = item.point;
+                        var percent = text + "%";
+                        return '<span class="g2-label-item">' + d.type + '<br/>' + percent + '</span>';
+                    }
+                };
+            });
+
+            var view2 = chart.view({
+                start: {
+                    x: 0.5,
+                    y: 0.1
+                },
+                end: {
+                    x: 1,
+                    y: 0.9
+                }
+            });
+            view2.axis(false);
+            view2.source(other, {
+                value: {
+                    nice: false
+                }
+            });
+            view2.intervalStack().position('1*value').color('type', ['#063d8a', '#0b53b0', '#1770d6', '#2593fc', '#47abfc', '#6dc1fc', '#94d6fd', '#bbe7fe']).label('value', {
+                position: 'right',
+                offsetX: 5,
+                offsetY: 10,
+                formatter: function formatter(text, item) {
+                    var d = item.point;
+                    return d.type + ' ' + d.value + '%';
+                }
+            });
+            chart.render();
+            drawLinkArea();
+            chart.on('afterpaint', function () {
+                drawLinkArea();
+            });
+
+
+//  var data1 = [{
+//     action: '访问',
+//     visitor: 500,
+//     site: '站点1'
+//   }, {
+//     action: '浏览',
+//     visitor: 400,
+//     site: '站点1'
+//   }, {
+//     action: '交互',
+//     visitor: 300,
+//     site: '站点1'
+//   }, {
+//     action: '下单',
+//     visitor: 200,
+//     site: '站点1'
+//   }, {
+//     action: '完成',
+//     visitor: 100,
+//     site: '站点1'
+//   }, {
+//     action: '访问',
+//     visitor: 550,
+//     site: '站点2'
+//   }, {
+//     action: '浏览',
+//     visitor: 420,
+//     site: '站点2'
+//   }, {
+//     action: '交互',
+//     visitor: 280,
+//     site: '站点2'
+//   }, {
+//     action: '下单',
+//     visitor: 150,
+//     site: '站点2'
+//   }, {
+//     action: '完成',
+//     visitor: 80,
+//     site: '站点2'
+//   }];
+//   data.sort(function(obj1, obj2) {
+//     // 从小到大
+//     return obj1.visitor - obj2.visitor;
+//   });
+//   var chart1 = new G2.Chart({
+//     container: 'mountNode',
+//     forceFit: true,     //当父元素宽度变化时，通过调用此方法达到宽度自适应。当然也可以在创建 chart 实例时设置 forceFit 属性
+//     height: window.innerHeight,
+//     padding: [0, 20, 0,0]
+//   });
+//   chart1.legend({    //真不知道
+//     reversed: true
+//   });
+//   var view2 =chart1.view({
+//       start:{
+//           x:0.5,
+//           y:0.1
+//       },
+//       end:{
+//           x:1,
+//           y:0.9
+//       }
+//   });
+//   view2.axis(false);    //坐标轴配置
+//   view2.source(data1);
+//   view2.tooltip({
+//     crosshairs: false,
+//     showTitle: false,
+//     itemTpl: '<li data-index={index} style="margin-bottom:4px;">' + '<span style="background-color:{color};" class="g2-tooltip-marker"></span>' + '{name}<br/>' + '<span style="padding-left: 16px">{value}</span>' + '</li>'
+//   });
+//   chart1.facet('mirror', {   //生成分面
+//     fields: ['site'],
+//     transpose: true,
+//     padding: 0,
+//     eachView: function eachView(view, facet) {
+//       view.interval().position('action*visitor').color('action', ['#BAE7FF', '#69C0FF', '#40A9FF', '#1890FF', '#0050B3']).shape('funnel').tooltip('site*action*visitor', function(site, action, visitor) {
+//         return {
+//           name: site,
+//           value: action + ': ' + visitor
+//         };
+//       }).style({
+//         lineWidth: 1,
+//         stroke: '#fff'
+//       });
+
+//       data.map(function(obj) {
+//         if (obj.site === facet.colValue) {
+//           view.guide().text({
+//             top: true,   //文字浮在上面还是下面
+//             position: [obj.action, 'min'],
+//             content: obj.visitor,
+//             style: {
+//               fill: 'red',
+//               fontSize: '12',
+//               textAlign: facet.colIndex ? 'start' : 'end',
+//               shadowBlur: 2,
+//               shadowColor: 'rgba(0, 0, 0, .45)'
+//             },
+//             offsetX: facet.colIndex ? 10 : -10
+//           });
+//         }
+//       });
+//     }
+//   });
+//    view2.intervalStack().position('1*value').color('type', ['#063d8a', '#0b53b0', '#1770d6', '#2593fc', '#47abfc', '#6dc1fc', '#94d6fd', '#bbe7fe']).label('value', {
+//                 position: 'right',
+//                 offsetX: 5,
+//                 offsetY: 10,
+//                 formatter: function formatter(text, item) {
+//                     var d = item.point;
+//                     return d.type + ' ' + d.value + '%';
+//                 }
+//             });
+//   view2.render();
+//   //drawLinkArea();
+//   chart.on('afterpaint', function () {
+//          drawLinkArea();
+//   });
+
+
+       
+         /*---------绘制连接区间-----------*/
+         function drawLinkArea() {
+            var canvas = chart.get('canvas');
+            var container = chart.get('backPlot');
+            var view1_coord = view1.get('coord');
+            var center = view1_coord.center;
+            var radius = view1_coord.radius;
+            var interval_geom = chart.getAllGeoms()[1];
+            var interval_container = interval_geom.get('shapeContainer');
+            var interval_bbox = interval_container.getBBox();
+            var view2_coord = view2.get('coord');
+            //area points
+            var pie_start1 = {
+                x: center.x + Math.cos(Math.PI * 2 - otherOffsetAngle) * radius,
+                y: center.y + Math.sin(Math.PI * 2 - otherOffsetAngle) * radius
+            };
+            var pie_start2 = {
+                x: center.x + Math.cos(otherOffsetAngle) * radius,
+                y: center.y + Math.sin(otherOffsetAngle) * radius
+            };
+            var interval_end1 = {
+                x: interval_bbox.minX,
+                y: view2_coord.end.y
+            };
+            var interval_end2 = {
+                x: interval_bbox.minX,
+                y: view2_coord.start.y
+            };
+            var path = [['M', pie_start1.x, pie_start1.y], ['L', pie_start2.x, pie_start2.y], ['L', interval_end2.x, interval_end2.y], ['L', interval_end1.x, interval_end1.y], ['Z']];
+            container.addShape('path', {
+                attrs: {
+                    path: path,
+                    fill: '#e9f4fe'
+                }
+            });
+            canvas.draw();
+        }
+       
+       
+        });
+      
+    </script>
+</body>
+
+</html>
