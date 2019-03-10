@@ -39,7 +39,7 @@ d3.csv("../csv/nationality_sex_age.csv", function (error, dataset) {
         calculable: false,
         series: [
             {
-                name: '矩形图',
+                name: '民族',
                 type: 'treemap',
                 itemStyle: {
                     normal: {

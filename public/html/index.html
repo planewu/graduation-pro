@@ -31,7 +31,7 @@
         </div>
         <div id="content-right">
             <div id="nationality-map"></div>
-            <div id="move-map"></div>
+            <div id="move-map" style="width:343px" style="height:233px "></div>
             <div id="edu-map"></div>
         </div>
     </div>
@@ -74,6 +74,7 @@
             })
      </Script>
      <script src="../javascripts/nationalityMap.js"></script>
+     <script src="../javascripts/moveMap.js"></Script>
        
 </body>
 <style>
@@ -83,8 +84,10 @@
     }
 
     body {
+        position: relative;
         width: 100%;
         height: 100%;
+        overflow-x: hidden;
     }
 
     #background {
@@ -102,43 +105,43 @@
         position: absolute;
         z-index: 1;
         background-color: rgba(255, 255, 255, 0.5);
-        width: 100%;
+        width: 1520px;
         height: 100%;
     }
 
     #content-left {
-        margin: 0.5%;
+        margin: 2px;
         float: left;
         position: relative;
-        width: 23%;
+        width: 343px;
         height: 98%;
         background-color: green
     }
 
     #content-middle {
-        margin: 0.5%;
+        margin: 2px;
         float: left;
         position: relative;
-        width: 51%;
+        width: 768px;
         height: 98%;
         background-color: yellow
     }
 
     #content-right {
-        margin: 0.5%;
+        margin: 2px;
         float: left;
         position: relative;
-        width: 23%;
+        width:343px;
         height: 98%;
         background-color: blue
     }
 
     #born-map,#sex-map,#die-map,#nationality-map,#move-map,#edu-map{
-        margin:0.3%;
+        margin:1px;
         float:left;
         position: relative;
-        width: 98.2%;
-        height:32.8%;
+        width: 341px;
+        height:233px;
         background-color:pink;
 
     }
@@ -150,7 +153,8 @@
         background-color: red;
     }
     #work-map{
-        margin:0.5%;
+        margin:1px;
+        float:left;
         position: relative;
         width:99%;
         height:23%;
