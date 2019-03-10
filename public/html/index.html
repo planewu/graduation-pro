@@ -1,122 +1,171 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 
 <head>
-    <meta charset="utf-8">
-    <title>Map Force</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>吴菲菲的人口图谱</title>
 </head>
-<style>
-    .link {
-        stroke: #ccc;
-        stroke-width: 1;
-    }
-</style>
 
 <body>
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.js"></script>
+    <script src="../javascripts/drawMap.js"></script>
+    <script src="../javascripts/label.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script src="../javascripts/changeBackground.js"></script>
+    <div id="background"></div>
+
+    <div id="content">
+        <div id="content-left">
+            <div id="born-map"></div>
+            <div id="sex-map"></div>
+            <div id="die-map"></div>
+        </div>
+        <div id="content-middle">
+            <div id="map">
+                <div id="map-button"></div>
+            </div>
+            <div id="work-map"></div>
+        </div>
+        <div id="content-right">
+            <div id="nationality-map"></div>
+            <div id="move-map"></div>
+            <div id="edu-map"></div>
+        </div>
+    </div>
     <script>
-        var width = 1000;
-        var height = 1000;
-
-        var svg = d3.select("body").append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .append("g")
-            .attr("transform", "translate(0,0)");
-
-        var projection = d3.geo.mercator() //投影函数将三维转成二维
-            .center([107, 31])        //定义地图中心
-            .scale(850)                     //放大比例
-            .translate([width / 2, height / 2]);  //设定平移
-
-        var path = d3.geo.path()      //地理路径生成器
-            .projection(projection); //是设定的生成器的投影函数，传入上面定义
-
-        var force = d3.layout.force().size([width, height]);
-
-        var color = d3.scale.category20();
-        var nodes = [];
-        var links = [];
-
-        d3.json("../json/index.json",function(error,root){
-             if(error)
-             return console.error(error)
-             console.log(root.feature);
-       
-        root.features.forEach(function (d, i) {
-            var centroid = path.centroid(d);
-            centroid.x = centroid[0];
-            centroid.y = centroid[1];
-            centroid.feature = d;
-            nodes.push(centroid);
-        });
-
-        var triangles = d3.geom.voronoi().triangles(nodes);
-
-        triangles.forEach(function (d, i) {
-            // links.push(edge(d[0], d[1]));
-            // links.push(edge(d[1], d[2]));
-            // links.push(edge(d[2], d[0]));
-        });
-
-        console.log(nodes);
-        console.log(links);
-
-        force.gravity(0)
-            .charge(0)
-            .nodes(nodes)
-            .links(links)
-            .linkDistance(function (d) { return d.distance; })
-            .start();
-
-        var node = svg.selectAll("g")
-            .data(nodes)
-            .enter().append("g")
-            .attr("transform", function (d) { return "translate(" + -d.x + "," + -d.y + ")"; })
-            .call(force.drag)
-            .append("path")
-            .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
-            .attr("stroke", "#000")
-            .attr("stroke-width", 1)
-            .attr("fill", function (d, i) {
-                return color(i);
+            var totalmaxvalue = 10000;
+            var totalminvalue = 10;
+            var namelabeldy = 50;
+            var namelabeldx = 30;
+            var provinceDataYear;
+    
+            var globalyear = 2004;
+    
+    
+            var timeheight = 80;
+            var width = 1330;
+            var height = 520;
+            var background = "#D1EEEE";
+            var overColor = "#F08080";
+    
+            var svg = d3.select("#map").append("svg")
+                .attr("width", width)
+                .attr("height", height + timeheight)
+                .append("g")
+                .attr("transform", "translate(0,0)");
+    
+            var chinaJsonPath = "../json/china.json";
+            drawMap(chinaJsonPath, svg);  //画图
+            var nodes = [];
+            var provinceNodes = [];
+            var coutiesNodes = [];
+            var provinceId = "";
+            var coutiesId = "";
+            var textColor = "black";
+            getPersonData();  //获取人口数据
+            $("#map-button").click(function(){
+               d3.selectAll(".pathProvince").remove();
+               d3.selectAll(".pathCouty").remove();
+                drawMap(chinaJsonPath, svg);
+                getPersonData();  
             })
-            .attr("d", function (d) {
-                return path(d.feature);
-            });
-
-        // var link = svg.selectAll("line")
-        //     .data(links)
-        //     .enter()
-        //     .append("line")
-        //     .attr("class", "link")
-        //     .attr("x1", function (d) { return d.source.x; })
-        //     .attr("y1", function (d) { return d.source.y; })
-        //     .attr("x2", function (d) { return d.target.x; })
-        //     .attr("y2", function (d) { return d.target.y; });
-
-        force.on("tick", function () {
-            // link.attr("x1", function (d) { return d.source.x; })
-            //     .attr("y1", function (d) { return d.source.y; })
-            //     .attr("x2", function (d) { return d.target.x; })
-            //     .attr("y2", function (d) { return d.target.y; });
-
-            node.attr("transform", function (d) {
-                return "translate(" + d.x + "," + d.y + ")";
-            });
-        });
-
-
-        function edge(a, b) {
-            var dx = a[0] - b[0], dy = a[1] - b[1];
-            return {
-                source: a,
-                target: b,
-                distance: Math.sqrt(dx * dx + dy * dy)
-            };
-        }
-    })
-    </script>
-
+     </Script>
+     <script src="../javascripts/nationalityMap.js"></script>
+       
 </body>
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    #background {
+        background: url("../images/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        position: absolute;
+
+    }
+
+    #content {
+        position: absolute;
+        z-index: 1;
+        background-color: rgba(255, 255, 255, 0.5);
+        width: 100%;
+        height: 100%;
+    }
+
+    #content-left {
+        margin: 0.5%;
+        float: left;
+        position: relative;
+        width: 23%;
+        height: 98%;
+        background-color: green
+    }
+
+    #content-middle {
+        margin: 0.5%;
+        float: left;
+        position: relative;
+        width: 51%;
+        height: 98%;
+        background-color: yellow
+    }
+
+    #content-right {
+        margin: 0.5%;
+        float: left;
+        position: relative;
+        width: 23%;
+        height: 98%;
+        background-color: blue
+    }
+
+    #born-map,#sex-map,#die-map,#nationality-map,#move-map,#edu-map{
+        margin:0.3%;
+        float:left;
+        position: relative;
+        width: 98.2%;
+        height:32.8%;
+        background-color:pink;
+
+    }
+    #map{
+        margin:0.5%;
+        position: relative;
+        width:99%;
+        height:75%;
+        background-color: red;
+    }
+    #work-map{
+        margin:0.5%;
+        position: relative;
+        width:99%;
+        height:23%;
+        background-color: blue; 
+    }
+    #map-button{
+        float:right;
+        position: absolute;
+        background-color:black;
+        height:20px;
+        width: 80px;
+        margin-left:2%;
+        margin-top:20px;
+    }
+    
+</style>
 
 </html>

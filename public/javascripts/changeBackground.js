@@ -8,12 +8,14 @@ getMinValue(d)  //get min value parameter"d" is a arr
 */
 
 //获取了人口数据展示在地图上
+function getPersonData() {  
 d3.csv("../csv/china.csv", function (error, peopleData1) {
     if (error)
         console.error(error)
     var peopleData = peopleData1  //人口数据设为全局变量
     changeBackground(peopleData)
 });
+}
 //得到人口数据后进行颜色渲染
 function changeBackground(peopleData) {
     var tip = d3.select("#tip");
@@ -53,18 +55,18 @@ function changeBackground(peopleData) {
         .on("click", function (d, i) {
             var id = d.properties.id;
             clickChina(d, i, "../json/geometryProvince/" + id + ".json")
-            createTip(d.properties.name, peopleData);
-            createPie(d.properties.name, peopleData);
-            var location_pixel = getLocation(d.properties.cp)
-            if (location_pixel[1] > height / 2)   //为了tip能正常显示在视图上
-            {
-                tip.style("transform", "translate(" + (location_pixel[0] - 400) + "px," + (location_pixel[1] - 200) + "px)")   //地图下部分的tip在上摆放
-                d3.select("#tip").attr("class", "")
-            }
-            else {
-                tip.style("transform", "translate(" + (location_pixel[0] - 400) + "px," + (location_pixel[1] + 200) + "px)")
-                d3.select("#tip").attr("class", "")
-            }
+            // createTip(d.properties.name, peopleData);
+            // createPie(d.properties.name, peopleData);
+            // var location_pixel = getLocation(d.properties.cp)
+            // if (location_pixel[1] > height / 2)   //为了tip能正常显示在视图上
+            // {
+            //     tip.style("transform", "translate(" + (location_pixel[0] - 400) + "px," + (location_pixel[1] - 200) + "px)")   //地图下部分的tip在上摆放
+            //     d3.select("#tip").attr("class", "")
+            // }
+            // else {
+            //     tip.style("transform", "translate(" + (location_pixel[0] - 400) + "px," + (location_pixel[1] + 200) + "px)")
+            //     d3.select("#tip").attr("class", "")
+            // }
         })
 }
 function getMaxValue(d) {

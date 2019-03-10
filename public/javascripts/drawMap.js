@@ -58,7 +58,7 @@ function drawPrivenceMap(mapPath, d, svg) {
         var projection = d3.geo.mercator() //投影函数
             .center(root.cp)
             .scale(root.size * 2.7)
-            .translate([width / 4 * 3, height / 2]);
+            .translate([width / 4 * 1.2, height/2 ]);  //这个是控制距离的。
         var path = d3.geo.path().projection(projection)
         svg.selectAll(".pathProvince")
             .data(root.features)
@@ -80,10 +80,10 @@ function drawPrivenceMap(mapPath, d, svg) {
                     .on("click", function (d, i) {
                         var id = d.properties.id + "00";
                         var coutyJsonPath = "../json/geometryCouties/" + id + ".json";
-                        clickProvince(d, i, coutyJsonPath)
+                        // clickProvince(d, i, coutyJsonPath)    //县级地区无数据先屏蔽掉。
                     })
             })
-
+            createCityLabel(root);       ////创建标注
         root.features.forEach(function (d, i) {
             var centroid = path.centroid(d)
             centroid.x = centroid[0];
@@ -105,8 +105,8 @@ function drawCoutyMap(mapPath, d, svg) {
         var centers = getCenters(root.features);
         var projection = d3.geo.mercator()   //投影函数
             .center(centers)
-            .scale(zoomScale * 35)
-            .translate([width / 4 * 3, height / 2]);
+            .scale(zoomScale * 40)
+            .translate([width / 4 * 1.2, height / 2]);
         var path = d3.geo.path().projection(projection)
         svg.selectAll(".pathCouty")
             .data(root.features)
@@ -125,6 +125,7 @@ function drawCoutyMap(mapPath, d, svg) {
             .on("mouseout", function (d, i) {
                 d3.select(this).attr("fill", background)
             })
+           // createCoutyLabel(root,zoomScale);       ////创建标注   中心数据不足，无法创建
         root.features.forEach(function (d, i) {
             var centroid = path.centroid(d);
             centroid.x = centroid[0];
@@ -139,6 +140,9 @@ function drawCoutyMap(mapPath, d, svg) {
 function clickChina(d, i, path) {
     d3.selectAll(".pathProvince").remove();
     d3.selectAll(".pathCouty").remove();
+    d3.selectAll(".pathChina").remove();   
+    d3.selectAll(".name-area").remove();
+    d3.selectAll("circle").remove()
     drawPrivenceMap(path, d, svg);
 
 }
@@ -146,6 +150,8 @@ function clickChina(d, i, path) {
 function clickProvince(d, i, path) {
     d3.selectAll(".pathProvince").remove()
     d3.selectAll("pathCouty").remove();
+    d3.selectAll(".name-area").remove();
+    d3.selectAll("circle").remove()
     drawCoutyMap(path, d, svg);
 }
 //获得最佳地图中心点

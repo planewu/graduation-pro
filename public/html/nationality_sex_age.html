@@ -39,15 +39,10 @@
             if (error)
                 console.error(error)
             console.log(dataset);  //人口数据
-            var otherRatio = (dataset[0].all - dataset[0].han_all) / dataset[0].all; // 少数民族 的占比
-
-            var han_men = dataset[0].han_men / dataset[0].all; //汉族 男占比  
-            var han_women = dataset[0].han_women / dataset[0].all;  //汉族女占比
-
+            var otherRatio = (dataset[0].ageall - dataset[3].ageall) / dataset[0].ageall; // 少数民族 的占比
+            var han_men =(dataset[4].ageall/1000) / (dataset[0].ageall/1000); //汉族 男占比  
+            var han_women = dataset[5].ageall / dataset[0].ageall; //汉族女占比
             var otherOffsetAngle = otherRatio * Math.PI; // 民族 占的角度的一半
-
-            //   var otherRatio = 6.67 / 100; // Other 的占比
-            //   var otherOffsetAngle = otherRatio * Math.PI; // other 占的角度的一半
             var data = [{
                 type: '汉族男性',
                 value: han_men.toFixed(4)*100
@@ -58,32 +53,43 @@
                 type:'少数民族',
                 value:otherRatio.toFixed(4)*100
             }];
-            var other = [{
-                type: '论坛',
-                value: 1.77
-            }, {
-                type: '网站',
-                value: 1.44
-            }, {
-                type: '微信',
-                value: 1.12
-            }, {
-                type: '客户端',
-                value: 1.05
-            }, {
-                type: '新闻',
-                value: 0.81
-            }, {
-                type: '视频',
-                value: 0.39
-            }, {
-                type: '博客',
-                value: 0.37
-            }, {
-                type: '报刊',
-                value: 0.17
-            }];
-
+            // var other = [{
+            //     type: '论坛',
+            //     value: 1.77
+            // }, {
+            //     type: '网站',
+            //     value: 1.44
+            // }, {
+            //     type: '微信',
+            //     value: 1.12
+            // }, {
+            //     type: '客户端',
+            //     value: 1.05
+            // }, {
+            //     type: '新闻',
+            //     value: 0.81
+            // }, {
+            //     type: '视频',
+            //     value: 0.39
+            // }, {
+            //     type: '博客',
+            //     value: 0.37
+            // }, {
+            //     type: '报刊',
+            //     value: 0.17
+            // }];
+            var other =[];
+            var j=0;
+            for(i=6;i<176;i=i+3)
+            {
+                var a={};
+                 a.value=dataset[i].ageall/dataset[0].ageall;
+                 a.type=dataset[i].chinaname;
+                 other.push(a)
+                 j++;
+                 
+            }
+            console.log(other);
 
 
             var chart = new G2.Chart({

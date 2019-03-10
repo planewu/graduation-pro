@@ -14,6 +14,7 @@
 	<script src="../javascripts/tip.js"></script>
 	<script src="../javascripts/pie.js"></script>
 	<script src="../javascripts/label.js"></script>
+	<script src="../javascripts/changeBackground.js"></script>
 	<div id="tip" class="hidden">
 		<div class = "text-area">
 		<p><strong>省份: </strong><span class="province-name">加拿带</span></p>
@@ -48,7 +49,8 @@
 			.attr("transform", "translate(0,0)");
 
 		var chinaJsonPath = "../json/china.json";
-		drawMap(chinaJsonPath, svg);
+		drawMap(chinaJsonPath, svg); //画中国地图
+		getPersonData();  //获取人口数据
 		var nodes = [];
 		var provinceNodes = [];
 		var coutiesNodes = [];
@@ -57,7 +59,6 @@
 		var textColor = "black";
 	</Script>
 </body>
-<script src="../javascripts/changeBackground.js"></script>
 <style>
 	#map {
 		height: auto;
