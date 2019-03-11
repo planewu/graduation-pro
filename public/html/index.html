@@ -35,6 +35,102 @@
             <div id="edu-map"></div>
         </div>
     </div>
+
+    <style>
+            html {
+                width: 100%;
+                height: 100%;
+            }
+        
+            body {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                overflow-x: hidden;
+            }
+        
+            #background {
+                background: url("../images/background.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                position: absolute;
+        
+            }
+        
+            #content {
+                position: absolute;
+                z-index: 1;
+                background-color: rgba(255, 255, 255, 0.5);
+                width: 1520px;
+                height: 100%;
+            }
+        
+            #content-left {
+                margin: 2px;
+                float: left;
+                position: relative;
+                width: 343px;
+                height: 98%;
+                background-color: green
+            }
+        
+            #content-middle {
+                margin: 2px;
+                float: left;
+                position: relative;
+                width: 768px;
+                height: 98%;
+                background-color: yellow
+            }
+        
+            #content-right {
+                margin: 2px;
+                float: left;
+                position: relative;
+                width:343px;
+                height: 98%;
+                background-color: blue
+            }
+        
+            #born-map,#sex-map,#die-map,#nationality-map,#move-map,#edu-map{
+                margin:1px;
+                float:left;
+                position: relative;
+                width: 341px;
+                height:233px;
+                background-color:pink;
+        
+            }
+            #map{
+                margin:0.5%;
+                position: relative;
+                width:99%;
+                height:75%;
+                background-color: red;
+            }
+            #work-map{
+                margin:1px;
+                float:left;
+                position: relative;
+                width:99%;
+                height:23%;
+                background-color: blue; 
+            }
+            #map-button{
+                float:right;
+                position: absolute;
+                background-color:black;
+                height:20px;
+                width: 80px;
+                margin-left:2%;
+                margin-top:20px;
+            }
+            
+        </style>
+
     <script>
             var totalmaxvalue = 10000;
             var totalminvalue = 10;
@@ -77,99 +173,6 @@
      <script src="../javascripts/moveMap.js"></Script>
        
 </body>
-<style>
-    html {
-        width: 100%;
-        height: 100%;
-    }
 
-    body {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow-x: hidden;
-    }
-
-    #background {
-        background: url("../images/background.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        position: absolute;
-
-    }
-
-    #content {
-        position: absolute;
-        z-index: 1;
-        background-color: rgba(255, 255, 255, 0.5);
-        width: 1520px;
-        height: 100%;
-    }
-
-    #content-left {
-        margin: 2px;
-        float: left;
-        position: relative;
-        width: 343px;
-        height: 98%;
-        background-color: green
-    }
-
-    #content-middle {
-        margin: 2px;
-        float: left;
-        position: relative;
-        width: 768px;
-        height: 98%;
-        background-color: yellow
-    }
-
-    #content-right {
-        margin: 2px;
-        float: left;
-        position: relative;
-        width:343px;
-        height: 98%;
-        background-color: blue
-    }
-
-    #born-map,#sex-map,#die-map,#nationality-map,#move-map,#edu-map{
-        margin:1px;
-        float:left;
-        position: relative;
-        width: 341px;
-        height:233px;
-        background-color:pink;
-
-    }
-    #map{
-        margin:0.5%;
-        position: relative;
-        width:99%;
-        height:75%;
-        background-color: red;
-    }
-    #work-map{
-        margin:1px;
-        float:left;
-        position: relative;
-        width:99%;
-        height:23%;
-        background-color: blue; 
-    }
-    #map-button{
-        float:right;
-        position: absolute;
-        background-color:black;
-        height:20px;
-        width: 80px;
-        margin-left:2%;
-        margin-top:20px;
-    }
-    
-</style>
 
 </html>

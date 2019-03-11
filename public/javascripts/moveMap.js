@@ -1,6 +1,6 @@
 
 
-var myChart = echarts.init(document.getElementById("move-map"));
+var myChart = echarts.init(document.getElementById("move-map"),'dark');
 myChart.showLoading();
 d3.csv("../csv/move.csv", function (error, dataset) {
     if (error)
