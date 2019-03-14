@@ -1,13 +1,13 @@
 
 
-var myChart = echarts.init(document.getElementById("move-map"),'dark');
-myChart.showLoading();
+var moveMapChart = echarts.init(document.getElementById("move-map"),'dark');
+moveMapChart.showLoading();
 d3.csv("../csv/move.csv", function (error, dataset) {
     if (error)
         console.error(error)
     console.log(dataset);  //人口数据
 
-    myChart.hideLoading();
+    moveMapChart.hideLoading();
 
     var id = 0;    //省份id
     var graph = {};
@@ -99,10 +99,10 @@ d3.csv("../csv/move.csv", function (error, dataset) {
         ]
     };
 
-    myChart.setOption(option);
+    moveMapChart.setOption(option);
     setTimeout(function (){
 	    window.onresize = function () {
-	    	myChart.resize();
+	    	moveMapChart.resize();
 	    }
     },200)
     

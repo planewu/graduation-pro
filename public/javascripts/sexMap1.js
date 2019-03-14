@@ -1,5 +1,5 @@
-var myChart = echarts.init(document.getElementById("sex-map1"));
-myChart.showLoading();
+var sexMap1Chart = echarts.init(document.getElementById("sex-map1"));
+sexMap1Chart.showLoading();
 d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
     if (error)
         console.error(error)
@@ -25,12 +25,13 @@ d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
     }
 
 
-    myChart.hideLoading();
+    sexMap1Chart.hideLoading();
     option = {
         title: {
             text: '年龄比例',
         },
         tooltip: {
+            confine: true,
             trigger: 'axis',
             axisPointer: {
                 type: 'shadow'
@@ -84,6 +85,6 @@ d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
     };
 
 
-    myChart.setOption(option);
+    sexMap1Chart.setOption(option);
 
 });

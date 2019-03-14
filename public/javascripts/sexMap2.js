@@ -1,10 +1,10 @@
-var myChart = echarts.init(document.getElementById("sex-map2"));
-myChart.showLoading();
+var sexMap2Chart = echarts.init(document.getElementById("sex-map2"));
+sexMap2Chart.showLoading();
 d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
     if (error)
         console.error(error)
     console.log(dataset);  //人口数据
-    myChart.hideLoading();
+    sexMap2Chart.hideLoading();
     var id = 0;
     var sexPercent = [];
     for (var i = 0; i < 32; i++) {
@@ -20,7 +20,7 @@ d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
         }
     }
     
-    myChart.hideLoading();
+    sexMap2Chart.hideLoading();
     option = {
         title: {
             text: '男女比例',
@@ -38,6 +38,12 @@ d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
                 radius: '86%',
                 center: ['50%', '50%'],
                 data: sexPercent,
+                label:{
+                    normal: {
+                        position: 'inner'
+                    }
+                
+                },
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -50,6 +56,6 @@ d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
     };
 
 
-    myChart.setOption(option);
+    sexMap2Chart.setOption(option);
 
 });
