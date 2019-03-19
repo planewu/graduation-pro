@@ -16,7 +16,7 @@ d3.csv("../csv/nationality_sex_age.csv", function (error, dataset) {
     }
     console.log(other);
 
-    var nationalityMapChart = echarts.init(document.getElementById("nationality-map"),'dark');
+    var nationalityMapChart = echarts.init(document.getElementById("nationality-map"));
 
     var option = {
         title: {
