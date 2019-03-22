@@ -1,4 +1,4 @@
-var dieChart = echarts.init(document.getElementById("die-map"));
+var dieChart = echarts.init(document.getElementById("die-map"),"dark");
 dieChart.showLoading();
 d3.csv("../csv/die.csv", function (error, dataset) {
     if (error)

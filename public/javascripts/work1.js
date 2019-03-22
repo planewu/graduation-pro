@@ -1,6 +1,6 @@
 
 
-        var workchart = echarts.init(document.getElementById("work-map1"));
+        var workchart = echarts.init(document.getElementById("work-map1"),"dark");
         workchart.showLoading();
         d3.csv("../csv/work.csv", function (error, dataset) {
             if (error)

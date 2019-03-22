@@ -1,4 +1,4 @@
-var sexMap2Chart = echarts.init(document.getElementById("sex-map2"));
+var sexMap2Chart = echarts.init(document.getElementById("sex-map2"),"dark");
 sexMap2Chart.showLoading();
 d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
     if (error)

@@ -1,4 +1,4 @@
-var bornChart = echarts.init(document.getElementById("born-map"));
+var bornChart = echarts.init(document.getElementById("born-map"),"dark");
 bornChart.showLoading();
 d3.csv("../csv/born.csv", function (error, dataset) {
     if (error)

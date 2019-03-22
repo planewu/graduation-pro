@@ -1,5 +1,5 @@
 
-        var work3chart = echarts.init(document.getElementById("work-map3"));
+        var work3chart = echarts.init(document.getElementById("work-map3"),"dark");
         work3chart.showLoading();
         d3.csv("../csv/work3.csv", function (error, dataset) {
             if (error)

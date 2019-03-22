@@ -49,7 +49,7 @@
 
 
     //将单个民族的数据保存在other中
-    var eduChart = echarts.init(document.getElementById("edu-map"));
+    var eduChart = echarts.init(document.getElementById("edu-map"),"dark");
     option = {
         // tooltip: {
         //     trigger: 'axis',
