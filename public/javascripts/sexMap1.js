@@ -1,10 +1,11 @@
+function sexMap1(uid) {  
 var sexMap1Chart = echarts.init(document.getElementById("sex-map1"),"dark");
 sexMap1Chart.showLoading();
 d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
     if (error)
         console.error(error)
     console.log(dataset);  //人口数据
-    var id = 0;
+    var id = uid ||0;    //省份id
     var xAxis_value = 0;   //这个是地区总人口数
     var age = [];
     var dataShadow = [];
@@ -88,3 +89,5 @@ d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
     sexMap1Chart.setOption(option);
 
 });
+}
+sexMap1();

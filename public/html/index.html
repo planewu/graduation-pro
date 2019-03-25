@@ -201,6 +201,8 @@
             $("#map-button").click(function(){
                d3.selectAll(".pathProvince").remove();
                d3.selectAll(".pathCouty").remove();
+               d3.selectAll(".name-area").remove();
+               d3.selectAll(".location").remove();
                 drawMap(chinaJsonPath, svg);
                 getPersonData();  
             })

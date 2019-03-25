@@ -1,3 +1,4 @@
+function die(uid){
 var dieChart = echarts.init(document.getElementById("die-map"),"dark");
 dieChart.showLoading();
 d3.csv("../csv/die.csv", function (error, dataset) {
@@ -7,7 +8,7 @@ d3.csv("../csv/die.csv", function (error, dataset) {
 
     dieChart.hideLoading();
 
-    var id = 1;    //省份id
+    var id = uid ||0;    //省份id
     var man = [];
     var woman = [];
     for (var i = 0; i < 32; i++) {
@@ -88,3 +89,5 @@ d3.csv("../csv/die.csv", function (error, dataset) {
 
     dieChart.setOption(option);
 }); 
+}
+die();

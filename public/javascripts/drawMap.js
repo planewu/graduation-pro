@@ -144,6 +144,12 @@ function clickChina(d, i, path) {
     d3.selectAll(".name-area").remove();
     d3.selectAll("circle").remove()
     drawPrivenceMap(path, d, svg);
+    die(d.properties.uid);
+    sexMap1(d.properties.uid);
+    sexMap2(d.properties.uid);
+    work1(d.properties.uid);
+    work2(d.properties.uid);
+    work3(d.properties.uid);
 
 }
 //点击了省份地图上的某个市县将会触发的事件

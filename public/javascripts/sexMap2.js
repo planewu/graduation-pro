@@ -1,3 +1,4 @@
+function sexMap2(uid){
 var sexMap2Chart = echarts.init(document.getElementById("sex-map2"),"dark");
 sexMap2Chart.showLoading();
 d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
@@ -5,7 +6,7 @@ d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
         console.error(error)
     console.log(dataset);  //人口数据
     sexMap2Chart.hideLoading();
-    var id = 0;
+    var id = uid ||0;
     var sexPercent = [];
     for (var i = 0; i < 32; i++) {
         if (dataset[i].id == id) {
@@ -59,3 +60,5 @@ d3.csv("../csv/area_sex_age.csv", function (error, dataset) {
     sexMap2Chart.setOption(option);
 
 });
+}
+sexMap2();

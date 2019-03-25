@@ -1,4 +1,4 @@
-
+function work3(uid){
         var work3chart = echarts.init(document.getElementById("work-map3"),"dark");
         work3chart.showLoading();
         d3.csv("../csv/work3.csv", function (error, dataset) {
@@ -8,7 +8,7 @@
 
 
             work3chart.hideLoading();
-            var id = 1;
+            var id = uid ||0;
             var workHour=[];
            
             for (var i = 0; i < 32; i++) {
@@ -67,3 +67,5 @@
             work3chart.setOption(option);
 
         });
+    }
+    work3();

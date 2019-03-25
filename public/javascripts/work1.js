@@ -1,5 +1,5 @@
 
-
+function work1(uid){
         var workchart = echarts.init(document.getElementById("work-map1"),"dark");
         workchart.showLoading();
         d3.csv("../csv/work.csv", function (error, dataset) {
@@ -9,7 +9,7 @@
 
 
             workchart.hideLoading();
-            var id = 0;
+            var id = uid ||0;
             var jingjiPeolple = 0;
             var feijingjiPeople = 0;
             var zhengzaiGongzuoPeople = 0;
@@ -133,3 +133,5 @@
 
         });
 
+    }
+    work1();

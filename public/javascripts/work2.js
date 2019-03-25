@@ -1,3 +1,4 @@
+function work2(uid){
 var work2chart = echarts.init(document.getElementById("work-map2"),"dark");
 work2chart.showLoading();
 d3.csv("../csv/work2.csv", function (error, dataset) {
@@ -5,7 +6,7 @@ d3.csv("../csv/work2.csv", function (error, dataset) {
         console.error(error)
     console.log(dataset);  //人口数据
     work2chart.hideLoading();
-    var id = 0;
+    var id = uid ||0;
     var workType=[]
     var temp1={}
     var temp2={}
@@ -160,3 +161,5 @@ d3.csv("../csv/work2.csv", function (error, dataset) {
     work2chart.setOption(option);
 
 });
+}
+work2();
