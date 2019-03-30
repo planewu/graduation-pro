@@ -19,6 +19,7 @@
         <div id=jump class='jumpwork'>就业</div>
         <div id=jump class='jumpedu'>教育</div>
         <div id=jump class="jumpnationalityMap">民族</div>
+        <div id=jump class="jumpold">老年人口</div>
     </div>
     <style>
         #nationality-map {
@@ -73,6 +74,9 @@
         $(".jumpnationalityMap").click(function () {
             window.location.href = " http://localhost:3000/html/nationalityMap.html"
         });
+        $(".jumpold").click(function(){    
+              window.location.href=" http://localhost:3000/html/old.html"
+            });
     </script>
     <!-- ECharts单文件引入 -->
     <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.js"></script>

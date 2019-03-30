@@ -1,0 +1,164 @@
+<!-- 经纬度数据没补充所以是报错，加上经纬度就好了的 -->
+<!-- 20190330最后一次修改 -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+       
+    <meta charset="utf-8">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script> 
+    <style>
+        html {
+            margin: 0px;
+            padding: 0;
+
+        }
+
+        body {
+            margin: 0px;
+            padding: 0;
+        }
+
+        #main {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+        <div id="main" style="height:700px;">
+            <div id="main-top">
+                <div id="main-top-left" style="height:350px;"></div>
+                <div id="main-top-right" style="height:350px;"></div>
+            </div>
+            <div id="main-bottom">
+                    <div id="main-bottom-left" style="height:350px;"></div>
+                    <div id="main-bottom-middle" style="height:350px;"></div>
+                    <div id="main-bottom-right" style="height:350px;"></div>
+            </div>
+        </div>
+        <div id="content-right">
+            <div id=jump class='jumpindex'>主页</div>
+            <div id=jump class='jumpmove'>人口流动</div>
+            <div id=jump class='jumphouse'>住房</div>
+            <div id=jump class='jumpwork'>就业</div>
+            <div id=jump class='jumpedu'>教育</div>
+            <div id=jump class="jumpnationalityMap">民族</div>
+            <div id=jump class="jumpold">老年人口</div>
+        </div>
+    </div>
+    <style>
+        #content {
+            position: absolute;
+            width: 1520px;
+            height: 100%;
+        }
+
+        .moveleft {
+            background-color: yellow;
+            width: 343px;
+            height: 233px;
+            box-shadow: 2px 2px 50px;
+        }
+
+        #main {
+            background-color:seagreen;
+            position: relative;
+            float: left;
+            width: 1399px;
+            margin: 0;
+        }
+
+        #main-top-left{
+            float: left;
+            position: relative;
+            background-color:blue;
+            width:465px;
+            margin :0,1px,0,0;
+        }
+        #main-top-right{
+            float: left;
+            position: relative;
+            background-color:green;
+            width:930px;
+            margin :0,0,0,1px;
+        }
+        #main-bottom-left{
+            float: left;
+            position: relative;
+            background-color:yellow;
+            width:465px;
+            margin :0,1px,0,0;
+        }
+        #main-bottom-middle{
+            float: left;
+            position: relative;
+            background-color:pink;
+            width:465px;
+            margin :0,1px;
+        }
+        #main-bottom-right{
+            float: left;
+            position: relative;
+            background-color:red;
+            width:465px;
+            margin :0,0,0,1px
+        }
+        #content-right {
+            margin: 2px;
+            margin-top: 0;
+            float: left;
+            position: relative;
+            width: 100px;
+            height: 722px;
+            background-color: pink;
+
+        }
+
+        #jump {
+            width: 98px;
+            height: 80px;
+            line-height: 80px;
+            margin: 1px;
+            background-color: yellow;
+            box-shadow: 2px 2px 50px;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        #jump:hover {
+            opacity: 1;
+        }
+    </style>
+    <script>
+        $(".jumpindex").click(function () {
+            window.location.href = " http://localhost:3000/html/index.html"
+        });
+        $(".jumpmove").click(function () {
+            window.location.href = " http://localhost:3000/html/move.html"
+        });
+        $(".jumphouse").click(function () {
+            window.location.href = " http://localhost:3000/html/house.html"
+        });
+        $(".jumpwork").click(function () {
+            window.location.href = " http://localhost:3000/html/work.html"
+        });
+        $(".jumpedu").click(function () {
+            window.location.href = " http://localhost:3000/html/edu.html"
+        });
+        $(".jumpnationalityMap").click(function () {
+            window.location.href = " http://localhost:3000/html/nationalityMap.html"
+        });
+        $(".jumpold").click(function(){    
+              window.location.href=" http://localhost:3000/html/old.html"
+            });
+  </script>
+</body>
+
+</html>
