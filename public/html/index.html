@@ -19,7 +19,7 @@
 
     <div id="content">
         <div id="content-left">
-                <div id="move-map" style="width:343px" style="height:233px "></div>
+                <div id="born-map" style="width:343px" style="height:233px "></div>
             <div id="sex-map">
                 <div id="sex-map1" style="width:200px"></div>
                 <div id="sex-map2" style="width:138px"></div>
@@ -30,17 +30,24 @@
             <div id="map">
                 <div id="map-button"></div>
             </div>
-            <div id="work-map" >
+            <!-- <div id="work-map" >
                 <div id="work-map1" ></div>
                 <div id="work-map2"></div>
                 <div id="work-map3"></div>
-            </div>
+            </div> -->
         </div>
         <div id="content-right">
-            <div id="nationality-map"></div> 
+                <div id=jump class='jumpindex'>主页</div>
+                <div id=jump class='jumpmove'>人口流动</div>
+                <div id=jump class='jumphouse'>住房</div>
+                <div id=jump class='jumpwork'>就业</div>
+                <div id=jump class='jumpedu'>教育</div>
+                <div id=jump class="jumpnationalityMap">民族</div>
+            <!-- <div id="nationality-map"></div> 
             <div id="edu-map"></div>
-            <div id="born-map"></div>
+            <div id="born-map"></div> -->
         </div>
+        
     </div>
 
     <style>
@@ -89,7 +96,7 @@
                 margin: 2px;
                 float: left;
                 position: relative;
-                width: 768px;
+                width: 1058px;
                 height: 98%;
              
             }
@@ -98,8 +105,9 @@
                 margin: 2px;
                 float: left;
                 position: relative;
-                width:343px;
+                width:100px;
                 height: 98%;
+                background-color:pink;
                 
             }
         
@@ -116,8 +124,8 @@
             #map{
                 margin:0.5%;
                 position: relative;
-                width:99%;
-                height:75%;
+                width:100%;
+                height:100%;
                
             }
             #work-map{
@@ -165,6 +173,19 @@
             margin-left: 200px;
             height: 230px;
         }
+        #jump {
+            width: 98px;
+            height:80px;
+            line-height:80px;
+            margin:1px;
+            background-color:yellow;
+            box-shadow: 2px 2px 50px;
+            text-align: center;
+            opacity:0.8;
+        }
+        #jump:hover{
+            opacity:1;
+        }
         </style>
 
     <script>
@@ -178,8 +199,8 @@
     
     
             var timeheight = 80;
-            var width = 1330;
-            var height = 520;
+            var width = 1700;
+            var height = 700;
             var background = "#D1EEEE";
             var overColor = "#F08080";
     
@@ -205,7 +226,22 @@
                d3.selectAll(".location").remove();
                 drawMap(chinaJsonPath, svg);
                 getPersonData();  
-            })
+            })   
+            $(".jumpmove").click(function(){    
+              window.location.href=" http://localhost:3000/html/move.html"
+            });
+            $(".jumphouse").click(function(){    
+              window.location.href=" http://localhost:3000/html/house.html"
+            });
+            $(".jumpwork").click(function(){    
+              window.location.href=" http://localhost:3000/html/work.html"
+            });
+            $(".jumpedu").click(function(){    
+              window.location.href=" http://localhost:3000/html/edu.html"
+            });
+            $(".jumpnationalityMap").click(function(){    
+              window.location.href=" http://localhost:3000/html/nationalityMap.html"
+            });
      </Script>
      <script src="../javascripts/setView.js"></script>
      <script src="../javascripts/nationalityMap.js"></script>

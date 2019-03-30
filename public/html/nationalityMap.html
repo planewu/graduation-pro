@@ -11,7 +11,70 @@
 <body>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="nationality-map" style="height:400px"></div>
+    <div id="nationality-map" style="height:722px"></div>
+    <div id="content-right">
+        <div id=jump class='jumpindex'>主页</div>
+        <div id=jump class='jumpmove'>人口流动</div>
+        <div id=jump class='jumphouse'>住房</div>
+        <div id=jump class='jumpwork'>就业</div>
+        <div id=jump class='jumpedu'>教育</div>
+        <div id=jump class="jumpnationalityMap">民族</div>
+    </div>
+    <style>
+        #nationality-map {
+            float: left;
+            width: 1399px;
+            margin: 0;
+        }
+
+        #content-right {
+            margin: 2px;
+            margin-top: 0;
+            float: left;
+            position: relative;
+            width: 100px;
+            height: 722px;
+            background-color: pink;
+
+        }
+
+        #jump {
+            width: 98px;
+            height: 80px;
+            line-height: 80px;
+            margin: 1px;
+            background-color: yellow;
+            box-shadow: 2px 2px 50px;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        #jump:hover {
+            opacity: 1;
+        }
+    </style>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script>
+        $(".jumpindex").click(function () {
+            console.log("xxx")
+            window.location.href = " http://localhost:3000/html/index.html"
+        });
+        $(".jumpmove").click(function () {
+            window.location.href = " http://localhost:3000/html/move.html"
+        });
+        $(".jumphouse").click(function () {
+            window.location.href = " http://localhost:3000/html/house.html"
+        });
+        $(".jumpwork").click(function () {
+            window.location.href = " http://localhost:3000/html/work.html"
+        });
+        $(".jumpedu").click(function () {
+            window.location.href = " http://localhost:3000/html/edu.html"
+        });
+        $(".jumpnationalityMap").click(function () {
+            window.location.href = " http://localhost:3000/html/nationalityMap.html"
+        });
+    </script>
     <!-- ECharts单文件引入 -->
     <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.js"></script>
     <script type="text/javascript">
@@ -35,11 +98,11 @@
             }
             console.log(other);
 
-            var myChart = echarts.init(document.getElementById("nationality-map"));
+            var myChart = echarts.init(document.getElementById("nationality-map"), "dark");
 
             var option = {
                 title: {
-                    text: '民族',
+                    text: '地区民族组成',
 
                 },
                 tooltip: {
@@ -64,7 +127,10 @@
                             normal: {
                                 label: {
                                     show: true,
-                                    formatter: "{b}"
+                                    formatter: "{b}",
+                                    "textStyle": {
+                                        "fontSize": 18
+                                    }
                                 },
                                 borderWidth: 1
                             },
