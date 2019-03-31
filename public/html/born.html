@@ -93,17 +93,7 @@
             yanjiusheng.push(dataset[6].age30)
             yanjiusheng.push(dataset[6].age35)
             yanjiusheng.push(dataset[6].age40)
-
-            setTimeout(function () {
-
-                option = {
-                    legend: {},
-                    tooltip: {
-                        trigger: 'axis',
-                        showContent: false
-                    },
-                    dataset: {
-                        source: [
+           var a= [
                             ['age', '15以下', '15-20', '20-25', '25-30', '30-35', '35-40', '40以上'],
                             weishangxue,
                             xiaoxue,
@@ -113,6 +103,17 @@
                             benke,
                             yanjiusheng
                         ]
+          console.log(a);
+            setTimeout(function () {
+
+                option = {
+                    legend: {},
+                    tooltip: {
+                        trigger: 'axis',
+                        showContent: false
+                    },
+                    dataset: {
+                        source:a
                     },
                     xAxis: { type: 'category' },
                     yAxis: { gridIndex: 0 },
@@ -143,7 +144,6 @@
                 };
 
                 bornChart.on('updateAxisPointer', function (event) {
-                    console.log(event);
                     var xAxisInfo = event.axesInfo[0];
                     if (xAxisInfo) {
                         var dimension = xAxisInfo.value + 1;

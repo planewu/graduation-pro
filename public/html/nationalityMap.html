@@ -11,6 +11,7 @@
 <body>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="content">
     <div id="nationality-map" style="height:722px"></div>
     <div id="content-right">
         <div id=jump class='jumpindex'>主页</div>
@@ -20,8 +21,15 @@
         <div id=jump class='jumpedu'>教育</div>
         <div id=jump class="jumpnationalityMap">民族</div>
         <div id=jump class="jumpold">老年人口</div>
+        <div class="jumpinit">复原</div>
+    </div>
     </div>
     <style>
+           #content {
+            position: absolute;
+            width: 1520px;
+            height: 100%;
+        }
         #nationality-map {
             float: left;
             width: 1399px;
@@ -52,6 +60,16 @@
 
         #jump:hover {
             opacity: 1;
+        }
+        .jumpinit {
+            width: 98px;
+            height: 112px;
+            line-height: 80px;
+            margin: 1px;
+            background-color: yellow;
+            box-shadow: 2px 2px 50px;
+            text-align: center;
+            opacity: 0.8;
         }
     </style>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
