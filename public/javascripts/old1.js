@@ -16,7 +16,6 @@ function old1(uid) {
         var bujiankang=parseInt( dataset[i].bujiankang_m )+ parseInt(dataset[i].bujiankang_w );
         var zili=parseInt(dataset[i].zili_m) +parseInt( dataset[i].zili_w);
         var bunengzili=parseInt(dataset[i].bunengzili_m) + parseInt(dataset[i].bunengzili_w)
-        console.log(jiankang)
         moveleft1Chart.hideLoading();
         option = {
             title: {
