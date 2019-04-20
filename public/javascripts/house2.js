@@ -69,6 +69,9 @@ d3.csv("../csv/house2.csv", function (error, dataset) {
                     axisTick: {
                         alignWithLabel: true
                     },
+                     axisLabel:{     
+                       interval:"0"    //强制显示所有横坐标
+                     },
                     data: ['1949年以前','1949年-1959年','1959年-1969年','1969年-1979年','1979年-1989年','1989年-1999年','2000年以上']
                 }
             ],

@@ -31,6 +31,9 @@ function old3(uid) {
                     
                 },
                 xAxis: {type: 'category'},
+                axisLabel:{     
+                    interval:"1"    //强制显示所有横坐标
+                  },
                 // axisLabel: {  
                 //     interval:0,  
                 //     rotate:40  

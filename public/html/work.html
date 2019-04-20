@@ -30,11 +30,14 @@
     <div id="content">
         <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
         <div id="main" style="height:700px;">
-            <div id="main-left">
-                <div id="main-left-top" style="height:350px;"></div>
-                <div id="main-left-bottom" style="height:350px;"></div>
+            <div id="main-top">
+                <div id="main-top-left" style="height:350px;"></div>
+                <div id="main-top-right" style="height:350px;"></div>
             </div>
-            <div id="main-right" style="height:700px;">
+            <div id="main-bottom">
+                    <div id="main-bottom-left" style="height:350px;"></div>
+                    <div id="main-bottom-middle" style="height:350px;"></div>
+                    <div id="main-bottom-right" style="height:350px;"></div>
             </div>
         </div>
         <div id="content-right">
@@ -55,6 +58,13 @@
             height: 100%;
         }
 
+        .moveleft {
+            background-color: yellow;
+            width: 343px;
+            height: 233px;
+            box-shadow: 2px 2px 50px;
+        }
+
         #main {
             background-color:seagreen;
             position: relative;
@@ -63,39 +73,44 @@
             margin: 0;
         }
 
-        #main-left{
-            box-shadow: 2px 2px 50px;
-            float: left;
-            position: relative;
-            background-color:red;
-            width:699px;
-            margin :0,0,0,1px
-        }
-
-        #main-left-top{
+        #main-top-left{
             box-shadow: 2px 2px 50px;
             float: left;
             position: relative;
             background-color:blue;
-            
-            width:699px;
+            width:465px;
             margin :0,1px,0,0;
         }
-        #main-left-bottom{
+        #main-top-right{
+            box-shadow: 2px 2px 50px;
+            float: left;
+            position: relative;
+            background-color:green;
+            width:930px;
+            margin :0,0,0,1px;
+        }
+        #main-bottom-left{
             box-shadow: 2px 2px 50px;
             float: left;
             position: relative;
             background-color:yellow;
-            width:699px;
+            width:465px;
             margin :0,1px,0,0;
         }
-      
-        #main-right{
+        #main-bottom-middle{
+            box-shadow: 2px 2px 50px;
+            float: left;
+            position: relative;
+            background-color:pink;
+            width:465px;
+            margin :0,1px;
+        }
+        #main-bottom-right{
             box-shadow: 2px 2px 50px;
             float: left;
             position: relative;
             background-color:red;
-            width:700px;
+            width:465px;
             margin :0,0,0,1px
         }
         #content-right {
@@ -134,10 +149,11 @@
             opacity: 0.8;
         }
     </style>
-    <script src="../javascripts/edu1.js"> </script>
-    <script src="../javascripts/edu2.js"> </script>
-    <script src="../javascripts/edu3.js"> </script>
-    <script src="../javascripts/edu4.js"> </script>
+    <script src="../javascripts/work1.js"> </script>
+    <script src="../javascripts/work2.js"> </script>
+    <script src="../javascripts/work3.js"> </script>
+    <script src="../javascripts/work4.js"> </script>
+    <script src="../javascripts/work5.js"> </script>
     <script>
         $(".jumpindex").click(function () {
             window.location.href = " http://localhost:3000/html/index.html"
@@ -159,7 +175,7 @@
         });
         $(".jumpold").click(function(){    
               window.location.href=" http://localhost:3000/html/old.html"
-            });
+        });
   </script>
 </body>
 
