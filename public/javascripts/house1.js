@@ -1,5 +1,5 @@
 function house1(uid) {
-    var house1Chart = echarts.init(document.getElementById("main-bottom-left"), "dark");
+    var house1Chart = echarts.init(document.getElementById("main-top-left"), "dark");
     house1Chart.showLoading();
     d3.csv("../csv/house1.csv", function (error, dataset) {
         var i = 0;

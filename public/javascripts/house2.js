@@ -42,6 +42,11 @@ d3.csv("../csv/house2.csv", function (error, dataset) {
         var colors = ['#5793f3', '#d14a61', '#675bba'];
         
         option = {
+            title: {
+                text: '历次普查住房变化',
+                x: '0',
+                y:'2%'
+            },
             color: colors,
         
             tooltip: {

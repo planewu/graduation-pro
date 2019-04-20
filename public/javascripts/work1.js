@@ -5,7 +5,7 @@ d3.csv("../csv/work1.csv", function (error, dataset) {
     console.log(dataset);  //人口数据
     var id = uid || 0;
     var i = 0;
-    //将单个民族的数据保存在other中
+    //将单个职业的数据保存在other中
     var other = [];
     // var j = 0;
     // for (i = 3; i < 176; i = i + 3) {
