@@ -10,7 +10,7 @@ function house4(uid) {
     
     option = {
         title: {
-            text: '职业与住房',
+            text: '职业与住房分类',
             x: '0',
             y:'5%'
         },

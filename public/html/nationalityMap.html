@@ -21,7 +21,15 @@
         <div id=jump class='jumpedu'>教育</div>
         <div id=jump class="jumpnationalityMap">民族</div>
         <div id=jump class="jumpold">老年人口</div>
-        <div class="jumpinit">复原</div>
+        <div class="jumpinit">
+            <select>
+                <option value="0">全国</option>
+                <option value="1">北京</option>
+                <option value="2">天津</option>
+                <option value="3">新疆</option>
+            </select>
+            <button> 确认</button>
+        </div>
     </div>
     </div>
     <style>
@@ -70,6 +78,12 @@
             box-shadow: 2px 2px 50px;
             text-align: center;
             opacity: 0.8;
+        }
+
+        button{
+            position: absolute;
+            margin-top: 55px;
+            margin-left: -45px;
         }
     </style>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>

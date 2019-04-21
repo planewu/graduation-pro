@@ -35,9 +35,9 @@
                 <div id="main-top-right" style="height:350px;"></div>
             </div>
             <div id="main-bottom">
-                    <div id="main-bottom-left" style="height:350px;"></div>
-                    <div id="main-bottom-middle" style="height:350px;"></div>
-                    <div id="main-bottom-right" style="height:350px;"></div>
+                <div id="main-bottom-left" style="height:350px;"></div>
+                <div id="main-bottom-middle" style="height:350px;"></div>
+                <div id="main-bottom-right" style="height:350px;"></div>
             </div>
         </div>
         <div id="content-right">
@@ -48,7 +48,15 @@
             <div id=jump class='jumpedu'>教育</div>
             <div id=jump class="jumpnationalityMap">民族</div>
             <div id=jump class="jumpold">老年人口</div>
-            <div class="jumpinit">复原</div>
+            <div class="jumpinit">
+                <select>
+                    <option value="0">全国</option>
+                    <option value="1">北京</option>
+                    <option value="2">天津</option>
+                    <option value="3">新疆</option>
+                </select>
+                <button> 确认</button>
+            </div>
         </div>
     </div>
     <style>
@@ -66,53 +74,58 @@
         }
 
         #main {
-            background-color:seagreen;
+            background-color: seagreen;
             position: relative;
             float: left;
             width: 1399px;
             margin: 0;
         }
 
-        #main-top-left{
+        #main-top-left {
             box-shadow: 2px 2px 50px;
             float: left;
             position: relative;
-            background-color:blue;
-            width:465px;
-            margin :0,1px,0,0;
+            background-color: blue;
+            width: 465px;
+            margin: 0, 1px, 0, 0;
         }
-        #main-top-right{
+
+        #main-top-right {
             box-shadow: 2px 2px 50px;
             float: left;
             position: relative;
-            background-color:green;
-            width:930px;
-            margin :0,0,0,1px;
+            background-color: green;
+            width: 930px;
+            margin: 0, 0, 0, 1px;
         }
-        #main-bottom-left{
+
+        #main-bottom-left {
             box-shadow: 2px 2px 50px;
             float: left;
             position: relative;
-            background-color:yellow;
-            width:465px;
-            margin :0,1px,0,0;
+            background-color: yellow;
+            width: 465px;
+            margin: 0, 1px, 0, 0;
         }
-        #main-bottom-middle{
+
+        #main-bottom-middle {
             box-shadow: 2px 2px 50px;
             float: left;
             position: relative;
-            background-color:pink;
-            width:465px;
-            margin :0,1px;
+            background-color: pink;
+            width: 465px;
+            margin: 0, 1px;
         }
-        #main-bottom-right{
+
+        #main-bottom-right {
             box-shadow: 2px 2px 50px;
             float: left;
             position: relative;
-            background-color:red;
-            width:465px;
-            margin :0,0,0,1px
+            background-color: red;
+            width: 465px;
+            margin: 0, 0, 0, 1px
         }
+
         #content-right {
             margin: 2px;
             margin-top: 0;
@@ -138,6 +151,7 @@
         #jump:hover {
             opacity: 1;
         }
+
         .jumpinit {
             width: 98px;
             height: 112px;
@@ -147,6 +161,12 @@
             box-shadow: 2px 2px 50px;
             text-align: center;
             opacity: 0.8;
+        }
+
+        button{
+            position: absolute;
+            margin-top: 55px;
+            margin-left: -45px;
         }
     </style>
     <script src="../javascripts/house1.js"> </script>
@@ -173,13 +193,13 @@
         $(".jumpnationalityMap").click(function () {
             window.location.href = " http://localhost:3000/html/nationalityMap.html"
         });
-        $(".jumpold").click(function(){    
-              window.location.href=" http://localhost:3000/html/old.html"
+        $(".jumpold").click(function () {
+            window.location.href = " http://localhost:3000/html/old.html"
         });
-        $(".jumphouse").click(function(){    
-              window.location.href=" http://localhost:3000/html/old.html"
+        $(".jumphouse").click(function () {
+            window.location.href = " http://localhost:3000/html/old.html"
         })
-  </script>
+    </script>
 </body>
 
 </html>
